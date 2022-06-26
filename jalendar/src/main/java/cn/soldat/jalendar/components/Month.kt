@@ -8,9 +8,8 @@ package cn.soldat.jalendar.components
  */
 
 
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
@@ -23,7 +22,6 @@ import cn.soldat.jalendar.WeekFields
 import cn.soldat.jalendar.util.CalendarUtils
 import java.util.*
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Month(
     year: Int,
@@ -46,7 +44,7 @@ fun Month(
     val prevDays = calendar.get(Calendar.DAY_OF_WEEK) - 1
     calendar.add(Calendar.DAY_OF_MONTH, -prevDays)
     val start = lastMonthDays - prevDays + 1 // 31 - 3 = 28  + 1 = 29
-    LazyVerticalGrid(cells = GridCells.Fixed(7)) {
+    LazyVerticalGrid(columns = GridCells.Fixed(7)) {
         items(7) { index ->
             Text(
                 text = stringResource(id = WEEKS[WeekFields.values()[index]]!!),
